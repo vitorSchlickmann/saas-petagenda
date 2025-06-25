@@ -44,7 +44,7 @@ export function Header() {
     return (
         <header className="fixed top-0 right-0 left-0 z-[999] py-4 px-6 bg-white">
             <div className="container mx-auto flex items-center justify-between">
-                <Link className="text-3x1 font-bold text-zinc-900" href='/' >Pet<span className="text-orange-400">AGENDA</span></Link>
+                <Link className="text-3xl font-bold text-zinc-900" href='/' >Pet<span className="text-orange-700">AGENDA</span></Link>
 
                 <nav className="hidden md:flex items-center space-x-4">
                     <NavLinks />
