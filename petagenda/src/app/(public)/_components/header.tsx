@@ -5,14 +5,20 @@ import Link from "next/link";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from "@/components/ui/button";
 import { LogIn, Menu } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { handleRegiser } from "../_actions/login";
 
 export function Header() {
     const [isOpen, setIsOpen] = useState(false);
+    const { data: session, status } = useSession();
 
-    const session = null;
     const navItems = [
         { href: "#petshops", label: "Petshops" }
     ]
+
+    async function handleLogin() {
+        await handleRegiser('github');
+    }
 
     const NavLinks = () => (
         <>
@@ -28,12 +34,14 @@ export function Header() {
                     </Link>
                 </Button>
             })}
-            {session ? (
-                <Link href='/dashboard' className="flex items-center justify-center">
+            { status  === 'loading' ? (
+                <></>
+            ): session ? (
+                <Link href='/dashboard' className="flex items-center justify-center cursor-pointer bg-zinc-900 text-white py-1 rounded-md px-4">
                     Acessar Petshop
                 </Link>
             ): (
-                <Button>
+                <Button onClick={handleLogin} className="cursor-pointer bg-orange-700">
                     <LogIn/>
                     Fazer Login
                 </Button>

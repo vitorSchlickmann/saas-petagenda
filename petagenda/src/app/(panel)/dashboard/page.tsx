@@ -1,4 +1,15 @@
+import getSession from '@/lib/getSession';
+import { redirect } from 'next/navigation';
+
 export default function Dashboard() {
+    const session = getSession();
+    
+    console.log(session);
+
+    if (!session) {
+        redirect('/');
+    }
+
     return (
         <div>
             <h1>Página Dashboard</h1>
